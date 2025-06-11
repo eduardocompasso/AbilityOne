@@ -58,7 +58,7 @@ export const Header: React.FC = () => {
         <div className="container flex flex-col md:flex-row items-center gap-4">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center justify-start md:w-1/4">
-            <Link to='/home'>
+            <Link to='/'>
               <img 
                 src="/src/assets/images/logoAbility.jpeg" 
                 alt="AbilityOne Program logo" 
