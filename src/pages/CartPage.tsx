@@ -5,7 +5,7 @@ import type { Product } from '../types';
 import { api } from '../mocks/api';
 
 export const CartPage = () => {
-  const { cart, loading, error } = useCart();
+  const { cart, loading, error, clearCart, removeFromCart } = useCart();
   const [products, setProducts] = useState<Record<string, Product>>({});
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
 
@@ -99,6 +99,13 @@ export const CartPage = () => {
                         ${(item.price * item.quantity).toFixed(2)}
                       </p>
                     </div>
+                    <button
+                      className="ml-4 px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+                      onClick={() => removeFromCart && removeFromCart(item.productId)}
+                      aria-label={`Remove ${product.name} from cart`}
+                    >
+                      Remove
+                    </button>
                   </div>
                 </div>
               );

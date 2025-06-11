@@ -1,8 +1,8 @@
-import React from 'react';
 import { useCart } from '../hooks/useCart';
 import { ProductCard } from './ProductCard';
 import { TitleBar } from './TitleBar';
 import type { Product } from '../types';
+import toast from 'react-hot-toast';
 
 interface TopSellersSectionProps {
   products: Product[];
@@ -25,7 +25,10 @@ export const TopSellersSection = ({ products }: TopSellersSectionProps) => {
             <ProductCard 
               key={product.id} 
               product={product}
-              onAddToCart={() => addToCart(product.id, 1)}
+              onAddToCart={async (p) => {
+                await addToCart(p.id, 1);
+                toast.success(`${p.name} adicionado ao carrinho!`);
+              }}
             />
           ))}
         </div>

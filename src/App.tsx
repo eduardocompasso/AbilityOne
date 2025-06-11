@@ -8,12 +8,14 @@ import { RegisterPage } from './pages/RegisterPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { Toaster } from 'react-hot-toast';
 
 export const App = () => {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
-      <Header />
+        <Toaster position="top-right" />
+        <Header />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />

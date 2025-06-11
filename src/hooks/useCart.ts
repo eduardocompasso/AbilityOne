@@ -100,6 +100,10 @@ export const useCart = () => {
     setCart([]);
   }, [setCart]);
 
+  const removeFromCart = useCallback((productId: string) => {
+    setCart((prevCart) => prevCart.filter(item => item.productId !== productId));
+  }, [setCart]);
+
   const total = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
@@ -113,5 +117,6 @@ export const useCart = () => {
     addToCart,
     refreshCart,
     clearCart,
+    removeFromCart,
   };
 }; 
