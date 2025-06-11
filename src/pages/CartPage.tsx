@@ -45,7 +45,7 @@ export const CartPage = () => {
     );
   }
 
-  if (cart.items.length === 0) {
+  if (cart.length === 0) {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
@@ -69,77 +69,73 @@ export const CartPage = () => {
       <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Cart Items */}
-        <div className="lg:col-span-2">
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="divide-y divide-gray-200">
-              {cart.items.map((item) => {
-                const product = products[item.productId];
-                if (!product) return null;
+        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+          <div className="divide-y divide-gray-200">
+            {cart.map((item) => {
+              const product = products[item.productId];
+              if (!product) return null;
 
-                return (
-                  <div key={item.productId} className="p-6">
-                    <div className="flex items-center">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-24 h-24 object-cover rounded-md"
-                      />
-                      <div className="ml-6 flex-1">
-                        <h3 className="text-lg font-semibold">
-                          <Link
-                            to={`/products/${product.id}`}
-                            className="hover:text-primary transition-colors"
-                          >
-                            {product.name}
-                          </Link>
-                        </h3>
-                        <p className="text-gray-600 mt-1">
-                          Quantity: {item.quantity}
-                        </p>
-                        <p className="text-primary font-semibold mt-2">
-                          ${(item.price * item.quantity).toFixed(2)}
-                        </p>
-                      </div>
+              return (
+                <div key={item.productId} className="p-6">
+                  <div className="flex items-center">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-24 h-24 object-cover rounded-md"
+                    />
+                    <div className="ml-6 flex-1">
+                      <h3 className="text-lg font-semibold">
+                        <Link
+                          to={`/products/${product.id}`}
+                          className="hover:text-primary transition-colors"
+                        >
+                          {product.name}
+                        </Link>
+                      </h3>
+                      <p className="text-gray-600 mt-1">
+                        Quantity: {item.quantity}
+                      </p>
+                      <p className="text-primary font-semibold mt-2">
+                        ${(item.price * item.quantity).toFixed(2)}
+                      </p>
                     </div>
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
         {/* Order Summary */}
-        <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
-            <div className="space-y-4">
-              <div className="flex justify-between">
-                <span className="text-gray-600">Subtotal</span>
-                <span className="font-semibold">${cart.total.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Shipping</span>
-                <span className="font-semibold">Calculated at checkout</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Tax</span>
-                <span className="font-semibold">Calculated at checkout</span>
-              </div>
-              <div className="border-t border-gray-200 pt-4">
-                <div className="flex justify-between">
-                  <span className="text-lg font-semibold">Total</span>
-                  <span className="text-lg font-semibold text-primary">
-                    ${cart.total.toFixed(2)}
-                  </span>
-                </div>
-              </div>
-              <button
-                className="w-full bg-primary text-white py-3 rounded-md hover:bg-primary-light transition-colors"
-                onClick={() => alert('Checkout functionality coming soon!')}
-              >
-                Proceed to Checkout
-              </button>
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
+          <div className="space-y-4">
+            <div className="flex justify-between">
+              <span className="text-gray-600">Subtotal</span>
+              <span className="font-semibold">${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}</span>
             </div>
+            <div className="flex justify-between">
+              <span className="text-gray-600">Shipping</span>
+              <span className="font-semibold">Calculated at checkout</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-600">Tax</span>
+              <span className="font-semibold">Calculated at checkout</span>
+            </div>
+            <div className="border-t border-gray-200 pt-4">
+              <div className="flex justify-between">
+                <span className="text-lg font-semibold">Total</span>
+                <span className="text-lg font-semibold text-primary">
+                  ${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}
+                </span>
+              </div>
+            </div>
+            <button
+              className="w-full bg-primary text-white py-3 rounded-md hover:bg-primary-light transition-colors"
+              onClick={() => alert('Checkout functionality coming soon!')}
+            >
+              Proceed to Checkout
+            </button>
           </div>
         </div>
       </div>
