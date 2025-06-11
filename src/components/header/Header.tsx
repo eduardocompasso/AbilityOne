@@ -5,7 +5,7 @@ import { TopBar } from './TopBar';
 import { ContactBar } from './ContactBar';
 import { SearchBar } from './SearchBar';
 import { NavigationMenu } from './NavigationMenu';
-import { LoginPage } from '../../pages/LoginModal';
+import { LoginModal } from '../../pages/LoginModal';
 
 interface MobileMenuItem {
   type: 'link';
@@ -117,7 +117,7 @@ export const Header: React.FC = () => {
           </div>
         </div>
       )}
-      {isLoginModalOpen && <LoginPage onClose={handleLoginModalClose} />}
+      {isLoginModalOpen && <LoginModal onClose={handleLoginModalClose} />}
     </header>
   );
 }; 
