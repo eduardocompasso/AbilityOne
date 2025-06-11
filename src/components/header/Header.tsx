@@ -5,6 +5,7 @@ import { TopBar } from './TopBar';
 import { ContactBar } from './ContactBar';
 import { SearchBar } from './SearchBar';
 import { NavigationMenu } from './NavigationMenu';
+import { LoginPage } from '../../pages/LoginModal';
 
 interface MobileMenuItem {
   type: 'link';
@@ -31,9 +32,12 @@ const MOBILE_MENU_ITEMS: MobileMenuItem[] = [
 
 export const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const handleMobileMenuToggle = () => setIsMobileMenuOpen(true);
   const handleMobileMenuClose = () => setIsMobileMenuOpen(false);
+  const handleLoginModalOpen = () => setIsLoginModalOpen(true);
+  const handleLoginModalClose = () => setIsLoginModalOpen(false);
 
   return (
     <header className="w-full relative z-50" aria-label="Main site header">
@@ -46,7 +50,7 @@ export const Header: React.FC = () => {
       {/* ContactBar full width color */}
       <div className="w-full border-b bg-white">
         <div className="container">
-          <ContactBar />
+          <ContactBar onSignInClick={handleLoginModalOpen} />
         </div>
       </div>
       {/* Linha central: logo, busca, conta, carrinho */}
@@ -113,6 +117,7 @@ export const Header: React.FC = () => {
           </div>
         </div>
       )}
+      {isLoginModalOpen && <LoginPage onClose={handleLoginModalClose} />}
     </header>
   );
 }; 

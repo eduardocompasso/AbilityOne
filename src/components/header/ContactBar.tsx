@@ -2,7 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaHeadphones, FaBolt } from 'react-icons/fa';
 
-export const ContactBar: React.FC = () => (
+interface ContactBarProps {
+  onSignInClick?: () => void;
+}
+
+export const ContactBar: React.FC<ContactBarProps> = ({ onSignInClick }) => (
   <div className="text-gray-700 my-2 text-sm">
     <div className="container flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-2">
       <div className="hidden sm:flex items-center gap-2">
@@ -10,7 +14,14 @@ export const ContactBar: React.FC = () => (
         <span className="font-bold tracking-wide">1-877-438-5963</span>
       </div>
       <div className="flex items-center gap-4">
-        <Link to="/login" className="hover:underline" aria-label="Sign In">Sign In</Link>
+        <button
+          type="button"
+          onClick={onSignInClick}
+          className="hover:underline bg-transparent border-none p-0 m-0 text-inherit cursor-pointer"
+          aria-label="Sign In"
+        >
+          Sign In
+        </button>
         <span aria-hidden="true">|</span>
         <Link to="/register" className="hover:underline" aria-label="Register">Register</Link>
         <span aria-hidden="true">|</span>
