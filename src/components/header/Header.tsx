@@ -58,11 +58,13 @@ export const Header: React.FC = () => {
         <div className="container flex flex-col md:flex-row items-center gap-4">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center justify-start md:w-1/4">
-            <img 
-              src="/src/assets/images/logoAbility.jpeg" 
-              alt="AbilityOne Program logo" 
-              className="hidden md:block w-32 lg:w-48" 
-            />
+            <Link to='/home'>
+              <img 
+                src="/src/assets/images/logoAbility.jpeg" 
+                alt="AbilityOne Program logo" 
+                className="hidden md:block w-32 lg:w-48" 
+              />
+            </Link>
           </div>
           {/* Busca + ícones centralizados */}
           <div className="flex-1 flex items-center justify-center w-full max-w-2xl gap-4 sm:gap-8 mx-auto">
