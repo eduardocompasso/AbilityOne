@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth overflow-x-hidden;
+}
+
+body {
+    @apply bg-white text-gray-900 font-sans overflow-x-hidden;
+}
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
+}
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-light;
+}
+
+  .btn-secondary {
+    @apply bg-secondary text-gray-900 hover:bg-secondary-light;
+  }
+
+  .container {
+    @apply w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
